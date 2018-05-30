@@ -4,6 +4,7 @@ import {
     Text,
     View, Button, ListView, Alert
   } from 'react-native'
+  import BlockTime from '../componentes/blockTime'
 
   export default class RodadaAtual extends Component {
       constructor(props){
@@ -22,12 +23,11 @@ import {
 
     render(){
         return(
-            <View>   
-                <Text>Rodada Atual</Text>          
-
-                <ListView>
-
-                </ListView>                  
+            <View style={{flex:1, padding:5}}>
+                <View style={{flex:1}}>
+                    <Text>Você pode ver as pasrciais dos jogadores quando um jogo iniciar, clicando em uma partida!</Text>
+                </View>
+                <BlockTime />
             </View>
         )
     }
