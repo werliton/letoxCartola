@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-import Home from './src/screens/maisEscalados'
+import Home from './src/screens/parciaisJogadores'
 
 type Props = {};
 export default class App extends Component<Props> {

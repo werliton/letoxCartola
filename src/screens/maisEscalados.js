@@ -38,11 +38,11 @@ import {
                             <List>
                                 <ListItem avatar>
                                     <Left>
-                                        <Thumbnail source={{ uri: `${jogador.Atleta.escudo_clube}` }} />
+                                        <Thumbnail source={{ uri: `${jogador.escudo_clube}` }} />
                                     </Left>
                                     <Body>
                                         <Text>{jogador.Atleta.apelido}</Text>
-                                        <Text>{jogador.clube}</Text>
+                                        <Text style={{fontSize:12}}>{jogador.escalacoes} escalações</Text>
                                     </Body>
                                     <Right>
                                         <Text note>{jogador.posicao}</Text>
