@@ -6,21 +6,25 @@ import {
   } from 'react-native'
 
   export default class Home extends Component{
-      render(){
-          return(
-              <View>                  
-                  <Text>MERCADO ABERTO</Text>
-                  <Text>Status do mercado</Text>
-                  <Text>Ligas</Text>
-                  <Text>Time Favorito</Text>
-                  <Text>Rodada Atual</Text>
-                  <Text>Parciais do Jogadores</Text>
 
-                  <Text>MERCADO FECHADO</Text>
-                  <Text>Mais escalados</Text>
-                  <Text>Próximas Partidas</Text>
-                  
-              </View>
-          )
-      }
+    componentWillMount(){
+
+    }
+
+    render(){
+        return(
+            <View>                  
+                <Text>MERCADO ABERTO</Text>
+                <Text>Status do mercado</Text>
+                <Text>Ligas</Text>
+                <Text>Time Favorito</Text>
+                <Text>Rodada Atual</Text>
+                <Text>Parciais do Jogadores</Text>
+
+                <Text>MERCADO FECHADO</Text>
+                <Text>Mais escalados</Text>
+                <Text>Próximas Partidas</Text>                  
+            </View>
+        )
+    }
   }

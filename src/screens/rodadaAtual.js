@@ -17,7 +17,10 @@ import {
     componentDidMount(){
         let url = `https://api.cartolafc.globo.com/mercado/destaques`
         fetch(url)
-        .then(sucess => this.setState({times:''}))
+        .then(sucess => {
+            this.setState({times:''})
+            console.log(sucess)
+        })
         .catch(error => Alert.alert('Busca de times','Erro ao buscar times'))
     } 
 
