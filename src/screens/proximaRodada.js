@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import {
     StyleSheet,
     Text,
-    View, Button, ListView, Alert
+    View, Button, ListView, Alert, ScrollView
   } from 'react-native'
   
-import { Container, Header, Left, Body, Right, Title } from 'native-base';
+import { Container, Header, Left, Body, Right, Title, Content } from 'native-base';
 
   import CardTime from '../componentes/cardTime'
 
@@ -13,21 +13,29 @@ import { Container, Header, Left, Body, Right, Title } from 'native-base';
       constructor(props){
           super(props)
           this.state = {
-              times:[]
+              times:[],
+              partidas:[],
+              rodada:0
           }
       }
       
-    componentWillMount(){
+    async componentWillMount(){
         let url = `https://api.cartolafc.globo.com/partidas`
-        fetch(url)
-        .then(sucess => {
-            console.log(sucess.json())
-            this.setState({times:''})
+        await fetch(url)
+        .then(response => response.json())
+        .then( resp => {      
+            this.setState({
+                times:resp.clubes,
+                partidas: resp.partidas,
+                rodada:resp.rodada
+            })
         })
-        .catch(error => Alert.alert('Busca de times','Erro ao buscar times'))
+        .catch(error => Alert.alert('Busca de times','Erro ao buscar times'+error))
     } 
 
     render(){
+        console.log(this.state.partidas)
+        console.log(this.state.times)
         return(
             <Container>
                 <Header>
@@ -37,7 +45,14 @@ import { Container, Header, Left, Body, Right, Title } from 'native-base';
                 </Body>
                 <Right />
                 </Header>
-                <CardTime />    
+                <Content>
+                    {
+                        this.state.partidas.map(partida=>{
+
+                        })
+                    }
+                    <CardTime />  
+                </Content>
             </Container>
         )
     }
