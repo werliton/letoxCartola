@@ -4,6 +4,10 @@ import {
     Text,
     View, Button, ListView, Alert
   } from 'react-native'
+  
+import { Container, Header, Left, Body, Right, Title } from 'native-base';
+
+  import CardTime from '../componentes/cardTime'
 
   export default class ProximaRodada extends Component {
       constructor(props){
@@ -13,22 +17,28 @@ import {
           }
       }
       
-    componentDidMount(){
+    componentWillMount(){
         let url = `https://api.cartolafc.globo.com/partidas`
         fetch(url)
-        .then(sucess => this.setState({times:''}))
+        .then(sucess => {
+            console.log(sucess.json())
+            this.setState({times:''})
+        })
         .catch(error => Alert.alert('Busca de times','Erro ao buscar times'))
     } 
 
     render(){
         return(
-            <View>   
-                <Text>Próximas Rodadas</Text>          
-
-                <ListView>
-
-                </ListView>                  
-            </View>
+            <Container>
+                <Header>
+                <Left/>
+                <Body>
+                    <Title>Próxima Rodada</Title>
+                </Body>
+                <Right />
+                </Header>
+                <CardTime />    
+            </Container>
         )
     }
   }
