@@ -4,8 +4,8 @@ import { Thumbnail, Text, Icon, Body, Right, View } from 'native-base';
 export default props => (
     <Right>
         <Body>
-            <Thumbnail square source={{uri: props.logo }} />
-            <Text>{ props.posicao }ª - { props.nomeTime }</Text>
+            <Thumbnail square source={{uri: props.escudo }} />
+            <Text>{ props.time.posicao }ª - { props.time.nome }</Text>
 
             <View style={{flexDirection:'row'}}>                   
                 <Icon name="soccer-ball-o" type='FontAwesome' style={{ fontSize: 13, color: "green", paddingLeft: 3}}/>                    
