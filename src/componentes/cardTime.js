@@ -8,7 +8,7 @@ export default class CardTime extends Component{
   constructor(props){
     super(props)
     this.state = {
-      clubeCasa:'', clubeVisita:'', escudo:''
+      clubeCasa:'', clubeVisita:'', escudoCasa:'', escudoVisita:''
     }
   }
 
@@ -16,19 +16,25 @@ export default class CardTime extends Component{
     
     let clubeCasa   = this.props.times.filter(time => time.id === this.props.partida.clube_casa_id)
     let clubeVisita = this.props.times.filter(time => time.id === this.props.partida.clube_visitante_id)
-    let escudos = []
+    let escudosCasa = []
+    let escudosVisita = []
 
     await clubeCasa.forEach(element => {
       Object.keys(element.escudos).map(ele =>{
-        escudos.push(element.escudos[ele])      
+        escudosCasa.push(element.escudos[ele])      
       })
     })
-console.log(clubeCasa);
+    await clubeVisita.forEach(element => {
+      Object.keys(element.escudos).map(ele =>{
+        escudosVisita.push(element.escudos[ele])      
+      })
+    })
 
     this.setState({
       clubeCasa:clubeCasa[0],
       clubeVisita:clubeVisita[0],
-      escudo:escudos[1]
+      escudoCasa:escudosCasa[1],
+      escudoVisita:escudosVisita[1]
     })
   }
 
@@ -43,9 +49,9 @@ console.log(clubeCasa);
               </Button>
           </View>
           <CardItem>
-            <Time time={this.state.clubeCasa} escudo={this.state.escudo}/> 
+            <Time time={this.state.clubeCasa} escudo={this.state.escudoCasa}/> 
               <Icon name="remove" type="FontAwesome" />
-            <Time time={this.state.clubeVisita} escudo={this.state.escudo}/>        
+            <Time time={this.state.clubeVisita} escudo={this.state.escudoVisita}/>        
           </CardItem>
 
         </Card>

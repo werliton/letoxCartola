@@ -55,7 +55,7 @@ import { Container, Header, Left, Body, Right, Title, Content, Spinner } from 'n
                     <Header>
                     <Left/>
                     <Body>
-                        <Title>Próxima Rodada</Title>
+                        <Title>{this.state.rodada}ª Rodada</Title>
                     </Body>
                     <Right />
                     </Header>
