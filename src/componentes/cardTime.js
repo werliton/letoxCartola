@@ -14,27 +14,28 @@ export default class CardTime extends Component{
 
   async componentWillMount(){
     
-    let clubeCasa   = this.props.times.filter(time => time.id === this.props.partida.clube_casa_id)
-    let clubeVisita = this.props.times.filter(time => time.id === this.props.partida.clube_visitante_id)
-    let escudosCasa = []
+    let clubeCasa     = this.props.times.filter(time => time.id === this.props.partida.clube_casa_id)
+    let clubeVisita   = this.props.times.filter(time => time.id === this.props.partida.clube_visitante_id)
+    let escudosCasa   = []
     let escudosVisita = []
 
     await clubeCasa.forEach(element => {
-      Object.keys(element.escudos).map(ele =>{
+      Object.keys(element.escudos).map(ele => {
         escudosCasa.push(element.escudos[ele])      
       })
     })
     await clubeVisita.forEach(element => {
-      Object.keys(element.escudos).map(ele =>{
+      Object.keys(element.escudos).map(ele => {
         escudosVisita.push(element.escudos[ele])      
       })
     })
 
+
     this.setState({
       clubeCasa:clubeCasa[0],
       clubeVisita:clubeVisita[0],
-      escudoCasa:escudosCasa[1],
-      escudoVisita:escudosVisita[1]
+      escudoCasa:escudosCasa[2],
+      escudoVisita:escudosVisita[2]
     })
   }
 
@@ -45,13 +46,13 @@ export default class CardTime extends Component{
           <View style={{borderBottomWidth:1, borderBottomColor: '#ccc'}}>         
               <Button transparent>
                 <Icon name="map-marker" type="FontAwesome"/>
-                <Text>{this.props.partida.local} - {this.props.partida.partida_data}</Text>
+                <Text style={{fontSize:12}}>{this.props.partida.local} - {this.props.partida.partida_data}</Text>
               </Button>
           </View>
           <CardItem>
-            <Time time={this.state.clubeCasa} escudo={this.state.escudoCasa}/> 
+            <Time time={this.state.clubeCasa} escudo={this.state.escudoCasa} desempenho={this.props.partida.aproveitamento_mandante}/> 
               <Icon name="remove" type="FontAwesome" />
-            <Time time={this.state.clubeVisita} escudo={this.state.escudoVisita}/>        
+            <Time time={this.state.clubeVisita} escudo={this.state.escudoVisita} desempenho={this.props.partida.aproveitamento_visitante}/>         
           </CardItem>
 
         </Card>
