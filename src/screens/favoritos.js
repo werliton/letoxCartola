@@ -16,7 +16,6 @@ export default class Favoritos extends Component {
       }
 
     onPut(){
-        console.log('oi')
         let url = `https://api.cartolafc.globo.com/times?q=${this.state.timeNome}`
          fetch(url)
         .then(sucess => sucess.json())
