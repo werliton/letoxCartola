@@ -12,6 +12,8 @@ export default class FavoritoDetalhe extends Component {
           this.state = {
               atletas:[],
               clubes:[],
+              pontuados:[],
+              scouts:[],
               capitao:'',
               pontos:'',
               escudo:''
@@ -21,6 +23,7 @@ export default class FavoritoDetalhe extends Component {
     async componentWillMount(){
         //let url = `https://api.cartolafc.globo.com/time/slug/${this.props.slug}`
         let url = `https://api.cartolafc.globo.com/time/slug/letox-fc`
+
         await fetch(url)
         .then(sucess => sucess.json())
         .then(response => {
@@ -36,6 +39,7 @@ export default class FavoritoDetalhe extends Component {
                 pontos:response.pontos
             })
             return response
+
         })
         .then(response => {
             let clubes = []
@@ -46,6 +50,23 @@ export default class FavoritoDetalhe extends Component {
             this.setState({clubes})
         })
         .catch(error => Alert.alert('Busca de atletas','Erro ao buscar atletas:'+error))
+        
+        this.pontuados()
+    }
+
+    async pontuados(){
+        let url = 'https://api.cartolafc.globo.com/atletas/pontuados'
+
+        await fetch(url)
+        .then(sucess => sucess.json())
+        .then(response => { 
+            let pontuados = []
+            Object.keys(response.atletas).map(item => {
+                pontuados[item] = response.atletas[item]
+            })
+            this.setState({pontuados})                     
+        })
+        .catch(error => Alert.alert('Busca de pontuados','Erro ao buscar atletas:'+error))
     }
 
     isCapita(atletaId){        
@@ -61,7 +82,50 @@ export default class FavoritoDetalhe extends Component {
                 escudos.push(clubes.escudos[item])
             })
         })
-        return <Thumbnail square size={20} source={{ uri: escudos[0] }} />
+        return <Thumbnail square size={20} source={{ uri: escudos[0] }} style={{marginRight:5}}/>
+    }
+
+    renderPontuacao(atletaId){
+        let pontuados = this.state.pontuados
+        
+        if(pontuados[atletaId] != undefined)
+            return <Text note style={{fontWeight:'bold'}}> {pontuados[atletaId].pontuacao}</Text>
+        else
+            return <Text note> 0.0</Text>
+    }
+
+    renderScouts(atletaId){
+        let pontuados = this.state.pontuados
+        
+        if(pontuados[atletaId] != undefined){
+            let scouts = [] 
+                Object.keys(pontuados[atletaId].scout).map(item =>{ 
+                    scouts[item] = pontuados[atletaId].scout[item]          
+                })
+                console.log(scouts)
+                //return
+                scouts.forEach(scout=>{
+                    console.log(scout)
+                })
+        }else{
+            return <Text note> 0.0</Text>
+        }
+    }
+
+    scout(scout){
+        
+        if(scout['CA'] != undefined) return <Text note style={{fontSize:10}}>Cartão amarelo: {scout['CA']}</Text>
+        if(scout['FC']  != undefined) return <Text note style={{fontSize:10}}>Faltas cometidas: {scout['FC']}</Text>
+        if(scout['PE']  != undefined) return <Text note style={{fontSize:10}}>Passe errado: {scout['PE']}</Text>
+        if(scout['DD']  != undefined) return <Text note style={{fontSize:10}}>Defesa difícil: {scout['DD']}</Text>
+        if(scout['GS']  != undefined) return <Text note style={{fontSize:10}}>Gols sofridos: {scout['GS']}</Text>
+        if(scout['FS']  != undefined) return <Text note style={{fontSize:10}}>Faltas sofridas: {scout['FS']}</Text>
+        if(scout['I']  != undefined) return <Text note style={{fontSize:10}}>Impedimento: {scout['I']}</Text>
+        if(scout['RB']  != undefined) return <Text note style={{fontSize:10}}>Roubadas de bola: {scout['RB']}</Text>
+        if(scout['A']  != undefined) return <Text note style={{fontSize:10}}>Assistência: {scout['A']}</Text>
+        if(scout['FF']  != undefined) return <Text note style={{fontSize:10}}>Finalização fora: {scout['FF']}</Text>
+        if(scout['FT']  != undefined) return <Text note style={{fontSize:10}}>Finalização na trave: {scout['FT']}</Text>
+        if(scout['FD']  != undefined) return <Text note style={{fontSize:10}}>Finalização Defendida: {scout['FD']}</Text>
     }
 
     render(){
@@ -75,10 +139,11 @@ export default class FavoritoDetalhe extends Component {
                                 <ListItem key={key}>
                                     {this.renderEscudo(atleta.clube_id)}
                                     <Body>
-                                        <Text>{atleta.apelido} {this.isCapita(atleta.atleta_id)} </Text>
+                                        <Text style={{fontWeight:'bold'}}>{atleta.apelido} {this.isCapita(atleta.atleta_id)} </Text>
                                     </Body>
+                                    {this.renderScouts(atleta.atleta_id)}        
+                                    {this.renderPontuacao(atleta.atleta_id)}                            
                                     <Right>
-                                        <Text note>Média: {atleta.media_num}</Text>
                                         <Icon name="arrow-forward" />
                                     </Right>
                                 </ListItem>
