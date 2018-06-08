@@ -11,19 +11,21 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
                     'nome':'Ligas',
                     'icon':'ios-people',
                     'type':'Ionicons',
-                    'color':'',
+                    'color':'#b71c1c',
                     'link':'Ligas'
                 },
                 {
                     'nome':'Time Favorito',
                     'icon':'sports-club',
                     'type':'Entypo',
+                    'color':'#0288d1',
                     'link':'Favoritos'
                 },
                 {
                     'nome':'Rodada Atual',
                     'icon':'results',
                     'type':'Foundation',
+                    'color':'#558b2f',
                     'link':'ProximaRodada'
                 },
             ],
@@ -54,7 +56,7 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
                 {
                     this.state.menuOpen.map((item,key) => 
                         <CardItem button key={key} bordered onPress={()=> navigate(item.link)}>
-                            <Icon active name={item.icon} type={item.type}/>
+                            <Icon active name={item.icon} type={item.type} style={{color:item.color}}/>
                             <Text>{item.nome}</Text>
                             <Right>
                                 <Icon name="arrow-forward" />
