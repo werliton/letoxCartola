@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {
-   Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Title
+   Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Title, Spinner
   } from 'native-base'
 
   export default class MaisEscalados extends Component {
       constructor(props){
           super(props)
           this.state = {
-              jogadores:[]
+              jogadores:[], load:true
           }
       }
       
@@ -20,13 +20,29 @@ import {
             resp.forEach(el => {
                atletas.push(el)
             })
-            this.setState({jogadores:atletas})
+            this.setState({jogadores:atletas, load:false})
+
         })
         .catch(error => Alert.alert('Busca de jogadores','Erro ao buscar jogadores'))
     } 
 
     render(){
-        console.log(this.state.jogadores)
+        if(this.state.load){
+            return (
+                <Container>
+                    <Header>
+                        <Left/>
+                        <Body>
+                            <Title>Mais Escalados</Title>
+                        </Body>
+                    <Right />
+                    </Header>
+                    <Content> 
+                        <Spinner /> 
+                    </Content>
+                </Container>
+            )
+        }
         return(
             <Container>
                 <Header>
@@ -38,7 +54,7 @@ import {
                             <List>
                                 <ListItem avatar>
                                     <Left>
-                                        <Thumbnail source={{ uri: `${jogador.escudo_clube}` }} />
+                                        <Thumbnail square size={10} source={{ uri: `${jogador.escudo_clube}` }} />
                                     </Left>
                                     <Body>
                                         <Text>{jogador.Atleta.apelido}</Text>

@@ -35,7 +35,13 @@ export const RootStack = StackNavigator({
         navigationOptions: ({ navigation}) => ({
             header:null
         })
-    }   
+    },
+    MaisEscalados:{
+        screen: MaisEscalados,
+        navigationOptions: ({ navigation}) => ({
+            header:null
+        })
+    } 
 },
 {
     initialRouteName: 'Home'

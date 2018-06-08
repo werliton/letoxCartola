@@ -28,15 +28,21 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
                     'color':'#558b2f',
                     'link':'ProximaRodada'
                 },
+                {
+                    'nome' :'Mais escalados',
+                    'icon ':'ios-people',
+                    'type' :'Ionicons',
+                    'color':'#558b2f',
+                    'link' :'MaisEscalados'
+                },
             ],
             menuClose:[
                 {
-                    'nome':'Mais escalados',
-                    'icon':'logo-googleplus'
-                },
-                {
                     'nome':'Parciais do Jogadores',
-                    'icon':'logo-googleplus'
+                    'icon':'logo-googleplus',
+                    'type':'Foundation',
+                    'color':'#558b2f',
+                    'link':'ProximaRodada'
                 },
             ]
         }
