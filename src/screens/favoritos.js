@@ -7,13 +7,18 @@ import {
 import { Container, Header, Content, Form, Item, Input, Title, List, ListItem, Thumbnail, Body } from 'native-base';
 
 export default class Favoritos extends Component {
-      constructor(props){
-          super(props)
-          this.state = {
-              timeNome: '',
-              times:[]
-          }
-      }
+
+    static navigationOptions = {
+       title:'Time Favorito'
+    }
+
+    constructor(props){
+        super(props)
+        this.state = {
+            timeNome: '',
+            times:[]
+        }
+    }
 
     onPut(){
         let url = `https://api.cartolafc.globo.com/times?q=${this.state.timeNome}`
@@ -34,7 +39,6 @@ export default class Favoritos extends Component {
     render(){
         return(
             <Container>
-                <Header><Title>Time Favorito</Title></Header>
                 <Content>
                     <Form>
                         <Item>

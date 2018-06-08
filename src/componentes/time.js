@@ -9,14 +9,14 @@ export default props => (
 
             <View style={{flexDirection:'row'}}>    
             {
-                props.desempenho.map(item => {
+                props.desempenho.map((item,key) => {
                     
                     if(item === 'd')
-                        return <Icon name="controller-record" type='Entypo' style={{ fontSize: 13, color: "red", paddingLeft: 3}}/>
+                        return <Icon key={key} name="controller-record" type='Entypo' style={{ fontSize: 13, color: "red", paddingLeft: 3}}/>
                     if(item === 'v')
-                        return <Icon name="controller-record" type='Entypo' style={{ fontSize: 13, color: "green", paddingLeft: 3}}/>                    
+                        return <Icon key={key} name="controller-record" type='Entypo' style={{ fontSize: 13, color: "green", paddingLeft: 3}}/>                    
                     if(item === 'e')
-                        return <Icon name="controller-record" type='Entypo' style={{ fontSize: 13, color: "#b3b3b5", paddingLeft: 3}}/>                    
+                        return <Icon key={key} name="controller-record" type='Entypo' style={{ fontSize: 13, color: "#b3b3b5", paddingLeft: 3}}/>                    
                 })
             }           
             </View>

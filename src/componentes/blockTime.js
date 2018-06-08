@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right } from 'native-base';
 
 
 export default props => (

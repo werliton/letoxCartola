@@ -23,7 +23,8 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
                 {
                     'nome':'Rodada Atual',
                     'icon':'results',
-                    'type':'Foundation'
+                    'type':'Foundation',
+                    'link':'ProximaRodada'
                 },
             ],
             menuClose:[
@@ -43,11 +44,11 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
         const {navigate} = this.props.navigation
         return(
             <Container>
-            <Header>
-                <Body>
-                <Title>Letox Cartola</Title>
-                </Body>
-            </Header>
+                <Header>
+                    <Body>
+                        <Title>Letox Cartola</Title>
+                    </Body>
+                </Header>
             <Content>
             <Card>
                 {
