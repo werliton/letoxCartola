@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-import {
-    StyleSheet,
-    Text,
-    View, Button, ListView, Alert, ScrollView
-  } from 'react-native'
+import {Alert} from 'react-native'
   
 import { Container, Header, Left, Body, Right, Title, Content, Spinner } from 'native-base';
 

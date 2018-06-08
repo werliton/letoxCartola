@@ -132,7 +132,11 @@ export default class FavoritoDetalhe extends Component {
     render(){
         return(
             <Container>
-                <Header><Title>Time montado - {Math.ceil(this.state.pontos,-1)}</Title></Header>
+                <Header>
+                    <Body>
+                        <Title>Time montado - {Number.parseFloat(this.state.pontos).toFixed(2)}</Title>
+                    </Body>
+                </Header>
                 <Content>
                     <List>
                         {
