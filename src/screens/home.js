@@ -52,7 +52,7 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
             <Card>
                 {
                     this.state.menuOpen.map((item,key) => 
-                        <CardItem key={key} bordered onPress={()=> navigate(item.link)}>
+                        <CardItem button key={key} bordered onPress={()=> navigate(item.link)}>
                             <Icon active name={item.icon} type={item.type}/>
                             <Text>{item.nome}</Text>
                             <Right>
