@@ -68,8 +68,8 @@ export default class Favoritos extends Component {
                             <Input placeholder="Digite nome do time" value={this.state.timeNome} 
                             onChangeText={(timeNome)=>this.setState({timeNome})}
                             />
+                            <Button onPress={()=> this.onPut()} primary><Text>Adicionar</Text></Button>
                         </Item>
-                        <Button onPress={()=> this.onPut()}><Text>Adicionar</Text></Button>
                         {this.renderLoading()}
                         <List>
                             {

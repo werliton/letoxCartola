@@ -39,8 +39,8 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
             menuClose:[
                 {
                     'nome':'Parciais do Jogadores',
-                    'icon':'logo-googleplus',
-                    'type':'Foundation',
+                    'icon':'people',
+                    'type':'MaterialIcons',
                     'color':'#558b2f',
                     'link':'ProximaRodada'
                 },
@@ -66,11 +66,11 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
     renderStatusMercado(){
         if(this.state.statusMercado){
             return (
-                <CardItem style={{backgroundColor:'#b71c1c'}}>
+                <CardItem>
                     <Left>	
                         <Body>
-                        <Text>Mercado Fechado</Text>
-                        <Text note>Acompanhe as Parciais </Text>
+                        <Text style={{color:'#c62828', fontWeight:'bold'}}>Mercado Fechado</Text>
+                        <Text note style={{fontWeight:'bold'}}>Acompanhe as Parciais </Text>
                         </Body>
                     </Left>
                     </CardItem>
@@ -90,8 +90,38 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
         )
     }
 
-    render(){
+    renderMenu(){        
         const {navigate} = this.props.navigation
+
+        if(!this.state.statusMercado){
+            return (
+                 this.state.menuOpen.map((item,key) => 
+                    <CardItem button key={key} bordered onPress={()=> navigate(item.link)}>
+                        <Icon active name={item.icon} type={item.type} style={{color:item.color}}/>
+                        <Text>{item.nome}</Text>
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </CardItem>
+                )
+            )
+        }
+
+        return (
+            this.state.menuClose.map((item,key) => 
+               <CardItem button key={key} bordered onPress={()=> navigate(item.link)}>
+                   <Icon active name={item.icon} type={item.type} style={{color:item.color}}/>
+                   <Text>{item.nome}</Text>
+                   <Right>
+                       <Icon name="arrow-forward" />
+                   </Right>
+               </CardItem>
+           )
+       )
+
+    }
+
+    render(){
         return(
             <Container>
                 <Header>
@@ -100,20 +130,7 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
                     </Body>
                 </Header>
                 <Content>
-                <Card>
-                    {
-                        this.state.menuOpen.map((item,key) => 
-                            <CardItem button key={key} bordered onPress={()=> navigate(item.link)}>
-                                <Icon active name={item.icon} type={item.type} style={{color:item.color}}/>
-                                <Text>{item.nome}</Text>
-                                <Right>
-                                    <Icon name="arrow-forward" />
-                                </Right>
-                            </CardItem>
-                        )
-                    }
-                                    
-                </Card>
+                <Card>{this.renderMenu()}</Card>
                 <Card>
                     {this.renderStatusMercado()}
                 </Card>
