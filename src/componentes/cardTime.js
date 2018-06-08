@@ -13,6 +13,8 @@ export default class CardTime extends Component{
   }
 
   async componentWillMount(){
+    console.log(this.props.partida.aproveitamento_visitante +'-'+ this.props.partida.aproveitamento_visitante.reverse());
+    
     
     let clubeCasa     = this.props.times.filter(time => time.id === this.props.partida.clube_casa_id)
     let clubeVisita   = this.props.times.filter(time => time.id === this.props.partida.clube_visitante_id)
@@ -52,7 +54,7 @@ export default class CardTime extends Component{
           <CardItem>
             <Time time={this.state.clubeCasa} escudo={this.state.escudoCasa} desempenho={this.props.partida.aproveitamento_mandante}/> 
               <Icon name="remove" type="FontAwesome" />
-            <Time time={this.state.clubeVisita} escudo={this.state.escudoVisita} desempenho={this.props.partida.aproveitamento_visitante}/>         
+            <Time time={this.state.clubeVisita} escudo={this.state.escudoVisita} desempenho={this.props.partida.aproveitamento_visitante.reverse()}/>         
           </CardItem>
 
         </Card>

@@ -21,7 +21,6 @@ import { Container, Header, Left, Body, Right, Title, Content, Spinner } from 'n
         await fetch(url)
         .then(response => response.json())
         .then( resp => {   
-            console.log(resp)   
             this.setState({
                 partidas: resp.partidas,
                 rodada: resp.rodada

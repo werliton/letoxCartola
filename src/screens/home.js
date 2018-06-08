@@ -59,7 +59,6 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
                 fechamento:response.fechamento,
                 statusMercado:response.game_over
             })
-            console.log(response) 
         })
     }
 
