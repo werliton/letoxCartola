@@ -66,7 +66,7 @@ export default class FavoritoDetalhe extends Component {
             })
             this.setState({pontuados})                     
         })
-        .catch(error => Alert.alert('Busca de pontuados','Erro ao buscar atletas:'+error))
+        .catch(error => Alert.alert('Busca de pontuados','Erro ao buscar pontuados:'+error))
     }
 
     isCapita(atletaId){        
@@ -100,32 +100,29 @@ export default class FavoritoDetalhe extends Component {
         if(pontuados[atletaId] != undefined){
             let scouts = [] 
                 Object.keys(pontuados[atletaId].scout).map(item =>{ 
-                    scouts[item] = pontuados[atletaId].scout[item]          
+                    scouts[this.scoutName(item)] = pontuados[atletaId].scout[item]          
                 })
                 console.log(scouts)
                 //return
-                scouts.forEach(scout=>{
-                    console.log(scout)
-                })
+               
         }else{
             return <Text note> 0.0</Text>
         }
     }
 
-    scout(scout){
-        
-        if(scout['CA'] != undefined) return <Text note style={{fontSize:10}}>Cartão amarelo: {scout['CA']}</Text>
-        if(scout['FC']  != undefined) return <Text note style={{fontSize:10}}>Faltas cometidas: {scout['FC']}</Text>
-        if(scout['PE']  != undefined) return <Text note style={{fontSize:10}}>Passe errado: {scout['PE']}</Text>
-        if(scout['DD']  != undefined) return <Text note style={{fontSize:10}}>Defesa difícil: {scout['DD']}</Text>
-        if(scout['GS']  != undefined) return <Text note style={{fontSize:10}}>Gols sofridos: {scout['GS']}</Text>
-        if(scout['FS']  != undefined) return <Text note style={{fontSize:10}}>Faltas sofridas: {scout['FS']}</Text>
-        if(scout['I']  != undefined) return <Text note style={{fontSize:10}}>Impedimento: {scout['I']}</Text>
-        if(scout['RB']  != undefined) return <Text note style={{fontSize:10}}>Roubadas de bola: {scout['RB']}</Text>
-        if(scout['A']  != undefined) return <Text note style={{fontSize:10}}>Assistência: {scout['A']}</Text>
-        if(scout['FF']  != undefined) return <Text note style={{fontSize:10}}>Finalização fora: {scout['FF']}</Text>
-        if(scout['FT']  != undefined) return <Text note style={{fontSize:10}}>Finalização na trave: {scout['FT']}</Text>
-        if(scout['FD']  != undefined) return <Text note style={{fontSize:10}}>Finalização Defendida: {scout['FD']}</Text>
+    scoutName(scout){        
+        if(scout === 'CA') return 'Cartão amarelo'
+        if(scout === 'FC') return 'Faltas cometidas'
+        if(scout === 'PE') return 'Passe errado'
+        if(scout === 'DD') return 'Defesa difícil'
+        if(scout === 'GS') return 'Gols sofridos'
+        if(scout === 'FS') return 'Faltas sofridas'
+        if(scout === 'I')  return 'Impedimento'
+        if(scout === 'RB') return 'Roubadas de bola'
+        if(scout === 'A')  return 'Assistência'
+        if(scout === 'FF') return 'Finalização fora'
+        if(scout === 'FT') return 'Finalização na trave'
+        if(scout === 'FD') return 'Finalização Defendida'
     }
 
     render(){
