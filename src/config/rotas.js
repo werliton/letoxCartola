@@ -33,7 +33,7 @@ export const RootStack = StackNavigator({
     ProximaRodada:{
         screen: ProximaRodada,
         navigationOptions: ({ navigation}) => ({
-            header:null
+            title:''
         })
     }   
 },

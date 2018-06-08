@@ -21,8 +21,9 @@ export default class FavoritoDetalhe extends Component {
       }
 
     async componentWillMount(){
-        //let url = `https://api.cartolafc.globo.com/time/slug/${this.props.slug}`
-        let url = `https://api.cartolafc.globo.com/time/slug/letox-fc`
+        const {slug} = this.props.navigation.state.params
+
+        let url = `https://api.cartolafc.globo.com/time/slug/${slug}`
 
         await fetch(url)
         .then(sucess => sucess.json())
@@ -66,7 +67,10 @@ export default class FavoritoDetalhe extends Component {
             })
             this.setState({pontuados})                     
         })
-        .catch(error => Alert.alert('Busca de pontuados','Erro ao buscar pontuados:'+error))
+        .catch(error => {
+            console.log(error)
+            Alert.alert('Busca de pontuados','Mercado fechado. Esse time é o anterior.')
+        })
     }
 
     isCapita(atletaId){        

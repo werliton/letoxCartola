@@ -30,13 +30,13 @@ export default class Favoritos extends Component {
                 times.push(time)
             })
             this.setState({times})
-            console.log(response);
             
         })
         .catch(error => Alert.alert('Busca de times','Erro ao buscar times'))
     }
 
     render(){
+        const {navigate} = this.props.navigation
         return(
             <Container>
                 <Content>
@@ -50,7 +50,7 @@ export default class Favoritos extends Component {
                         <List>
                             {
                                 this.state.times.map((time, key) => 
-                                    <ListItem key={key}>
+                                    <ListItem key={key} onPress={() => navigate('FavoritoDetalhe',{slug: time.slug})}>
                                         <Thumbnail square size={80} source={{ uri: time.url_escudo_png }} />
                                         <Body>
                                             <Text>{time.nome}</Text>
