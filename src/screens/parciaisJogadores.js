@@ -21,6 +21,7 @@ import {
                 atletas.push(resp.atletas[item])
             })
             this.setState({jogadores:atletas, loading:false})
+
         })
         .catch(error => Alert.alert('Busca de jogadores','Erro ao buscar jogadores'))
     } 
@@ -30,21 +31,23 @@ import {
             return <Spinner />
         }
         return (
-            this.state.jogadores.map(jogador => 
-                <List>
-                    <ListItem avatar>
-                        <Left>
-                            <Thumbnail source={{ uri: `${jogador.foto}` }} />
-                        </Left>
-                        <Body>
-                            <Text>{jogador.apelido}</Text>
-                        </Body>
-                        <Right>
-                            <Text note>{jogador.pontuacao}</Text>
-                        </Right>
-                    </ListItem>
-                </List>
-            )
+            <List>
+                {
+                this.state.jogadores.map((jogador,key) => 
+                        <ListItem avatar key={key}>
+                            <Left>
+                                <Thumbnail source={{ uri: `${jogador.foto}` }} />
+                            </Left>
+                            <Body>
+                                <Text>{jogador.apelido}</Text>
+                            </Body>
+                            <Right>
+                                <Text note>{jogador.pontuacao}</Text>
+                            </Right>
+                        </ListItem>
+                )
+            }
+           </List>
         )
     }
 
