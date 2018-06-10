@@ -15,9 +15,12 @@ import {
         let url = `https://api.cartolafc.globo.com/atletas/pontuados`
         await fetch(url)
         .then(sucess => sucess.json())
-        .then( resp => {            
-            console.log(resp)
-            //this.setState({jogadores:resp.atletas})
+        .then( resp => {
+            let atletas = []
+            Object.keys(resp.atletas).map( item => {
+                atletas.push(resp.atletas[item])
+            })
+            this.setState({jogadores:atletas})
         })
         .catch(error => Alert.alert('Busca de jogadores','Erro ao buscar jogadores'))
     } 
@@ -39,10 +42,9 @@ import {
                                     </Left>
                                     <Body>
                                         <Text>{jogador.apelido}</Text>
-                                        <Text style={{fontSize:12}}>{jogador.pontuacao} escalações</Text>
                                     </Body>
                                     <Right>
-                                        <Text note>{jogador.posicao_id}</Text>
+                                        <Text note>{jogador.pontuacao}</Text>
                                     </Right>
                                 </ListItem>
                             </List>

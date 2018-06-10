@@ -42,7 +42,7 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
                     'icon':'people',
                     'type':'MaterialIcons',
                     'color':'#558b2f',
-                    'link':'ProximaRodada'
+                    'link':'ParciaisJogadores'
                 },
             ],
             
