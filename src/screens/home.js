@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, Body, Left } from 'native-base';
+import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, Body, Left, Spinner, View } from 'native-base';
 
   export default class Home extends Component{
 
@@ -47,7 +47,8 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
             ],
             
             fechamento:'',
-            statusMercado:false
+            statusMercado:false,
+            loading: true
         }
     }
 
@@ -57,7 +58,8 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
         .then( response => {
             this.setState({
                 fechamento:response.fechamento,
-                statusMercado:response.status_mercado
+                statusMercado:response.status_mercado,
+                loading:false
             })
         })
     }
@@ -120,6 +122,22 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
 
     }
 
+    renderContent(){
+        if(this.state.loading){
+            return (
+                <Spinner />
+            )
+        }
+        return (
+            <View>
+                <Card>{this.renderMenu()}</Card>
+                <Card>
+                    {this.renderStatusMercado()}
+                </Card>
+            </View>
+        )
+    }
+
     render(){
         return(
             <Container>
@@ -129,10 +147,7 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
                     </Body>
                 </Header>
                 <Content>
-                <Card>{this.renderMenu()}</Card>
-                <Card>
-                    {this.renderStatusMercado()}
-                </Card>
+                { this.renderContent()}
                 </Content>
             </Container>
         )

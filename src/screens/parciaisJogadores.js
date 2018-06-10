@@ -26,7 +26,6 @@ import {
     } 
 
     render(){
-        console.log(this.state.jogadores)
         return(
             <Container>
                 <Header>
