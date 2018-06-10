@@ -57,13 +57,13 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
         .then( response => {
             this.setState({
                 fechamento:response.fechamento,
-                statusMercado:response.game_over
+                statusMercado:response.status_mercado
             })
         })
     }
 
     renderStatusMercado(){
-        if(this.state.statusMercado){
+        if(this.state.statusMercado === 2){
             return (
                 <CardItem>
                     <Left>	
