@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {
-    Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Title
+    Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Title, Spinner
    } from 'native-base'
 
   export default class ParciaisJogadores extends Component {
     constructor(props){
         super(props)
         this.state = {
-            jogadores:[]
+            jogadores:[], loading: true
         }
     }
   
@@ -15,40 +15,50 @@ import {
         let url = `https://api.cartolafc.globo.com/atletas/pontuados`
         await fetch(url)
         .then(sucess => sucess.json())
-        .then( resp => {            
-            console.log(resp)
-            //this.setState({jogadores:resp.atletas})
+        .then( resp => {
+            let atletas = []
+            Object.keys(resp.atletas).map( item => {
+                atletas.push(resp.atletas[item])
+            })
+            this.setState({jogadores:atletas, loading:false})
+
         })
         .catch(error => Alert.alert('Busca de jogadores','Erro ao buscar jogadores'))
     } 
 
+    renderContent(){
+        if(this.state.loading){
+            return <Spinner />
+        }
+        return (
+            <List>
+                {
+                this.state.jogadores.map((jogador,key) => 
+                        <ListItem avatar key={key}>
+                            <Left>
+                                <Thumbnail source={{ uri: `${jogador.foto}` }} />
+                            </Left>
+                            <Body>
+                                <Text>{jogador.apelido}</Text>
+                            </Body>
+                            <Right>
+                                <Text note>{jogador.pontuacao}</Text>
+                            </Right>
+                        </ListItem>
+                )
+            }
+           </List>
+        )
+    }
+
     render(){
-        console.log(this.state.jogadores)
         return(
             <Container>
                 <Header>
                     <Title>Parciais dos Jogadores</Title>
                 </Header>
                 <Content>
-                    {
-                        this.state.jogadores.map(jogador => 
-                            <List>
-                                <ListItem avatar>
-                                    <Left>
-                                        <Thumbnail source={{ uri: `${jogador.foto}` }} />
-                                    </Left>
-                                    <Body>
-                                        <Text>{jogador.apelido}</Text>
-                                        <Text style={{fontSize:12}}>{jogador.pontuacao} escalações</Text>
-                                    </Body>
-                                    <Right>
-                                        <Text note>{jogador.posicao_id}</Text>
-                                    </Right>
-                                </ListItem>
-                            </List>
-                        )
-                    }
-                    
+                    {this.renderContent()}
                 </Content>
             </Container>
         )
