@@ -13,9 +13,7 @@ export default class CardTime extends Component{
   }
 
   async componentWillMount(){
-    console.log(this.props.partida.aproveitamento_visitante +'-'+ this.props.partida.aproveitamento_visitante.reverse());
-    
-    
+   
     let clubeCasa     = this.props.times.filter(time => time.id === this.props.partida.clube_casa_id)
     let clubeVisita   = this.props.times.filter(time => time.id === this.props.partida.clube_visitante_id)
     let escudosCasa   = []
