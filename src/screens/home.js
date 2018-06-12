@@ -94,7 +94,7 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
     renderMenu(){        
         const {navigate} = this.props.navigation
 
-        if(!this.state.statusMercado){
+        if(this.state.statusMercado===1){
             return (
                  this.state.menuOpen.map((item,key) => 
                     <CardItem button key={key} bordered onPress={()=> navigate(item.link)}>
