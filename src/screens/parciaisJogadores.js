@@ -22,9 +22,6 @@ import {
             })
             atletas = atletas.sort((a, b) => b.pontuacao - a.pontuacao)
 
-            console.log(atletas);
-            
-
             this.setState({jogadores:atletas, loading:false})
 
         })

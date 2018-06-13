@@ -38,6 +38,13 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Title, B
             ],
             menuClose:[
                 {
+                    'nome':'Time Favorito',
+                    'icon':'sports-club',
+                    'type':'Entypo',
+                    'color':'#0288d1',
+                    'link':'Favoritos'
+                },
+                {
                     'nome':'Parciais do Jogadores',
                     'icon':'people',
                     'type':'MaterialIcons',

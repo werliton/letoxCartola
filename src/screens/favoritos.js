@@ -4,7 +4,7 @@ import {
     Text,
     View, Alert, AsyncStorage
   } from 'react-native'
-import { Container, Header, Button , Content, Form, Item, Input, Title, List, ListItem, Thumbnail, Body, Toast, Right, Icon, Spinner } from 'native-base';
+import { Container, Header, Button , Content, Form, Item, Input, Title, List, ListItem, Thumbnail, Body, Right, Icon, Spinner } from 'native-base';
 
 export default class Favoritos extends Component {
 
@@ -43,7 +43,6 @@ export default class Favoritos extends Component {
     }
 
     async addLocalStorage(time){
-        console.log(time)
         await AsyncStorage.setItem('@car:time', time).then(sucess => alert('Adicionado com sucesso.'))
     }
 

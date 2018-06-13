@@ -102,31 +102,34 @@ export default class FavoritoDetalhe extends Component {
         let pontuados = this.state.pontuados
         
         if(pontuados[atletaId] != undefined){
-            let scouts = [] 
-                Object.keys(pontuados[atletaId].scout).map(item =>{ 
-                    scouts[this.scoutName(item)] = pontuados[atletaId].scout[item]          
-                })
-                console.log(scouts)
-                //return
-               
-        }else{
-            return <Text note> 0.0</Text>
+           
+            return (
+                <View>
+                    {
+                        Object.keys(pontuados[atletaId].scout).map((item, key) =>
+                            <Text note style={{fontSize:10}} key={key}>{this.scoutName(item)}: {pontuados[atletaId].scout[item]}</Text>       
+                        )
+                    }
+                </View>
+            )
         }
+        return <Text note></Text>
     }
 
     scoutName(scout){        
-        if(scout === 'CA') return 'Cartão amarelo'
-        if(scout === 'FC') return 'Faltas cometidas'
-        if(scout === 'PE') return 'Passe errado'
-        if(scout === 'DD') return 'Defesa difícil'
-        if(scout === 'GS') return 'Gols sofridos'
-        if(scout === 'FS') return 'Faltas sofridas'
-        if(scout === 'I')  return 'Impedimento'
-        if(scout === 'RB') return 'Roubadas de bola'
         if(scout === 'A')  return 'Assistência'
-        if(scout === 'FF') return 'Finalização fora'
-        if(scout === 'FT') return 'Finalização na trave'
+        if(scout === 'CA') return 'Cartão amarelo'
+        if(scout === 'DD') return 'Defesa difícil'
+        if(scout === 'FC') return 'Faltas cometidas'
         if(scout === 'FD') return 'Finalização Defendida'
+        if(scout === 'FF') return 'Finalização fora'
+        if(scout === 'FS') return 'Faltas sofridas'
+        if(scout === 'FT') return 'Finalização na trave'
+        if(scout === 'G')  return 'Gols'
+        if(scout === 'GS') return 'Gols sofridos'
+        if(scout === 'I')  return 'Impedimento'
+        if(scout === 'PE') return 'Passe errado'
+        if(scout === 'RB') return 'Roubadas de bola'
     }
 
     render(){
