@@ -100,13 +100,13 @@ export default class FavoritoDetalhe extends Component {
 
     renderScouts(atletaId){
         let pontuados = this.state.pontuados
+        let pontuacao = 0
         
         if(pontuados[atletaId] != undefined){
-           
             return (
                 <View>
                     {
-                        Object.keys(pontuados[atletaId].scout).map((item, key) =>
+                        Object.keys(pontuados[atletaId].scout).map((item, key) => 
                             <Text note style={{fontSize:10}} key={key}>{this.scoutName(item)}: {pontuados[atletaId].scout[item]}</Text>       
                         )
                     }
