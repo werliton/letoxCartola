@@ -20,11 +20,27 @@ import {
             Object.keys(resp.atletas).map( item => {
                 atletas.push(resp.atletas[item])
             })
+            atletas = atletas.sort((a, b) => b.pontuacao - a.pontuacao)
+
+            console.log(atletas);
+            
+
             this.setState({jogadores:atletas, loading:false})
 
         })
         .catch(error => Alert.alert('Busca de jogadores','Erro ao buscar jogadores'))
     } 
+
+    renderPontuacao(pontuacao){
+        if(pontuacao > 0){
+            return (
+                <Text note style={{color:'green', fontWeight: 'bold', fontSize: 12,}}>{pontuacao}</Text>
+            )
+        }
+        return (
+            <Text note style={{color:'red', fontWeight: 'bold', fontSize: 12,}}>{pontuacao}</Text>
+        )
+    }
 
     renderContent(){
         if(this.state.loading){
@@ -42,7 +58,7 @@ import {
                                 <Text>{jogador.apelido}</Text>
                             </Body>
                             <Right>
-                                <Text note>{jogador.pontuacao}</Text>
+                                {this.renderPontuacao(jogador.pontuacao)}
                             </Right>
                         </ListItem>
                 )
@@ -55,7 +71,9 @@ import {
         return(
             <Container>
                 <Header>
-                    <Title>Parciais dos Jogadores</Title>
+                    <Body>
+                        <Title>Parciais dos Jogadores</Title>
+                    </Body>
                 </Header>
                 <Content>
                     {this.renderContent()}
