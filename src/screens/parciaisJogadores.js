@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Alert } from 'react-native'
 import {
     Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Title, Spinner
    } from 'native-base'
@@ -11,11 +12,11 @@ import {
         }
     }
   
-    async componentDidMount(){
+    componentDidMount(){
         let url = `https://api.cartolafc.globo.com/atletas/pontuados`
-        await fetch(url)
-        .then(sucess => sucess.json())
-        .then( resp => {
+        fetch(url)
+        .then( sucess => sucess.json())
+        .then( resp => {            
             let atletas = []
             Object.keys(resp.atletas).map( item => {
                 atletas.push(resp.atletas[item])
@@ -25,17 +26,20 @@ import {
             this.setState({jogadores:atletas, loading:false})
 
         })
-        .catch(error => Alert.alert('Busca de jogadores','Erro ao buscar jogadores'))
+        .catch(error => {
+            Alert.alert('Busca de jogadores','Erro ao buscar jogadores.'+error)
+            this.setState({loading:false})
+        })
     } 
 
     renderPontuacao(pontuacao){
         if(pontuacao > 0){
             return (
-                <Text note style={{color:'green', fontWeight: 'bold', fontSize: 12,}}>{pontuacao}</Text>
+                <Text note style={{color:'green', fontWeight: 'bold', fontSize: 12}}>{pontuacao}</Text>
             )
         }
         return (
-            <Text note style={{color:'red', fontWeight: 'bold', fontSize: 12,}}>{pontuacao}</Text>
+            <Text note style={{color:'red', fontWeight: 'bold', fontSize: 12}}>{pontuacao}</Text>
         )
     }
 
