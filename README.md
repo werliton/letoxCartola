@@ -1,5 +1,5 @@
 # letoxCartola
-App para acompanhar parciais no Cartola FC feito com *React Native (https://facebook.github.io/react-native/)*
+App para acompanhar parciais no Cartola FC feito com *[React Native](https://facebook.github.io/react-native/)*
 
 
 Recursos utilizados:
